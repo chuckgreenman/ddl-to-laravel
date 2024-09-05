@@ -1,0 +1,12 @@
+{
+  "name": "chuckgreenman/ddl-to-laravel",
+  "autoload": {
+    "psr-4": {
+      "ChuckGreenman\\DdlToLaravel\\": "src/"
+    }
+  },
+  "require": {
+    "laravel/framework": "^11.22",
+    "nikic/php-parser": "^5.1"
+  }
+}
