@@ -1,8 +1,27 @@
-# ddl-to-laravel
+# DDL to Laravel
 Generate Laravel migrations, models and factories from DDLs
 
+When working on a migration project to Laravel we need to convert the database schema to Laravel migrations, models and factories. When we do that manually it is time consuming and error prone.
 
-## Support
+Creating factories automatically encourages us to write tests and helps encourage writing more tests.
+
+## Architecture
+
+The project is divided into three main components:
+* DDL Parser
+  * Parse DDLs from the four supported databases
+  * Eventually support callable functions like nullable, default, etc.
+* Column Content Litmus Test
+  * Select 100 rows randomly from each column, and determine the column type.
+  * For Example: ipAddress is just a string, but it is a special string.
+* Blueprint Generator
+  * Generate a new migration file from the DDL and Column Content Litmus Test
+
+
+
+## Column Type Support Table
+
+Laravel's Blueprint class has many methods to create columns
 
 | Method                  | MySQL | PostgreSQL | SQLite | SQL Server |
 |-------------------------|-------|------------|--------|------------|
