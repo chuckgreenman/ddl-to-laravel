@@ -20,5 +20,5 @@ interface BaseSource
      * Returns an array of Columns
      * @return array
      */
-    public function listColumns(stirng $tableName): array;
+    public function listColumns(string $tableName): array;
 }
