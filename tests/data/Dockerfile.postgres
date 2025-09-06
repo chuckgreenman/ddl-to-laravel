@@ -1,0 +1,10 @@
+FROM postgres:15
+
+ENV POSTGRES_DB=northwind
+ENV POSTGRES_USER=northwind
+ENV POSTGRES_PASSWORD=northwind
+
+# Copy initialization scripts
+COPY postgres-init/ /docker-entrypoint-initdb.d/
+
+EXPOSE 5432
