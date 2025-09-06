@@ -1,5 +1,7 @@
 <?php
 
+namespace ChuckGreenman\DdlToLaravel\Sources;
+
 interface BaseSource
 {
     /**
