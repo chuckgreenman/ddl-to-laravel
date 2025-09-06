@@ -2,9 +2,9 @@
 
 namespace ChuckGreenman\DdlToLaravel\Sources;
 
-use PDO\Sqlite;
+use ChuckGreenman\DdlToLaravel\Columns\Column;
 
-class SqliteSource implements BaseSource
+class SqliteSource implements Source
 {
     private $connection;
 
@@ -37,6 +37,19 @@ class SqliteSource implements BaseSource
 
     public function listColumns(string $tableName): array
     {
-        return [];
+        $query = 'PRAGMA table_info("%s");';
+        $statement = $this->connection->prepare(sprintf($query, $tableName));
+        $statement->execute();
+        $columns = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $columns = array_map(function ($column) use ($tableName) {
+            return new Column(
+                $tableName,
+                $column['name'],
+                $column['type']
+            );
+        }, $columns);
+
+        return $columns;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ChuckGreenman\DdlToLaravel\Sources;
 
-interface BaseSource
+interface Source
 {
     /**
      * Returns the number of tables in a sources.

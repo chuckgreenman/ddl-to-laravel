@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use ChuckGreenman\DdlToLaravel\Columns\Column;
 use ChuckGreenman\DdlToLaravel\Sources\SqliteSource;
 use PDO;
 
@@ -72,7 +73,15 @@ class SqliteSourceTest extends TestCase
 
     public function test_list_columns_returns_array(): void
     {
-        $result = $this->sqliteSource->listColumns("Orders");
+        $expected = [
+            new Column("Categories", "CategoryID", "INTEGER"),
+            new Column("Categories", "CategoryName", "TEXT"),
+            new Column("Categories", "Description", "TEXT"),
+            new Column("Categories", "Picture", "BLOB"),
+        ];
+
+        $result = $this->sqliteSource->listColumns("Categories");
+        $this->assertEquals($expected, $result);
         $this->assertIsArray($result);
     }
 }
