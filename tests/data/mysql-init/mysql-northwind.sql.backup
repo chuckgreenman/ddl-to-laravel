@@ -1,26 +1,26 @@
-DROP DATABASE   /*!32312 IF EXISTS*/ Northwind;
+DROP DATABASE   /*!32312 IF EXISTS*/ northwind;
 
-CREATE DATABASE Northwind  CHAR SET utf8 COLLATE utf8_bin ;
+CREATE DATABASE northwind  CHAR SET utf8 COLLATE utf8_bin ;
 
 
-USE Northwind;
+USE northwind;
 
-CREATE TABLE Category (
-  categoryId INT AUTO_INCREMENT NOT NULL
-  ,categoryName VARCHAR(15) NOT NULL
-  ,description TEXT NULL
-  ,picture BLOB NULL
-  ,PRIMARY KEY (categoryId)
+CREATE TABLE Categories (
+  CategoryID INT AUTO_INCREMENT NOT NULL
+  ,CategoryName VARCHAR(15) NOT NULL
+  ,Description TEXT NULL
+  ,Picture LONGBLOB NULL
+  ,PRIMARY KEY (CategoryID)
   ) ENGINE=INNODB;
 
-CREATE TABLE Region (
+CREATE TABLE Regions (
   regionId INT NOT NULL
   ,regiondescription VARCHAR(50) NOT NULL
   ,PRIMARY KEY (regionId)
   ) ENGINE=INNODB;
 
 
-CREATE TABLE Territory (
+CREATE TABLE Territories (
   territoryId VARCHAR(20) NOT NULL
   ,territorydescription VARCHAR(50) NOT NULL
   ,regionId INT NOT NULL
@@ -35,7 +35,7 @@ CREATE TABLE CustomerDemographics (
   ,PRIMARY KEY (customerTypeId)
   ) ENGINE=INNODB;
 
-CREATE TABLE Customer (
+CREATE TABLE Customers (
   custId INT AUTO_INCREMENT NOT NULL
   ,companyName VARCHAR(40) NOT NULL
   ,contactName VARCHAR(30) NULL
@@ -53,7 +53,7 @@ CREATE TABLE Customer (
   ) ENGINE=INNODB;
 
 
-CREATE TABLE CustCustDemographics (
+CREATE TABLE CustomerCustomerDemo (
   custId INT NOT NULL
   ,customerTypeId INT NOT NULL
   ,PRIMARY KEY (custId, customerTypeId)
@@ -66,7 +66,7 @@ CREATE TABLE CustCustDemographics (
 
 
 
-CREATE TABLE Employee (
+CREATE TABLE Employees (
   employeeId INT AUTO_INCREMENT NOT NULL
   ,lastname VARCHAR(20) NOT NULL
   ,firstname VARCHAR(10) NOT NULL
@@ -90,7 +90,7 @@ CREATE TABLE Employee (
   ,PRIMARY KEY (employeeId)
   ) ENGINE=INNODB;
 
-CREATE TABLE EmployeeTerritory (
+CREATE TABLE EmployeeTerritories (
   employeeId  INT AUTO_INCREMENT NOT NULL
   ,territoryId VARCHAR(20) NOT NULL
   ,PRIMARY KEY (employeeId, territoryId)
@@ -100,7 +100,7 @@ CREATE TABLE EmployeeTerritory (
       REFERENCES Territory(territoryId)
   ) ENGINE=INNODB;
 
-CREATE TABLE Supplier (
+CREATE TABLE Suppliers (
   supplierId INT AUTO_INCREMENT NOT NULL
   ,companyName VARCHAR(40) NOT NULL
   ,contactName VARCHAR(30) NULL
@@ -119,7 +119,7 @@ CREATE TABLE Supplier (
 
 
 
-CREATE TABLE Product (
+CREATE TABLE Products (
   productId INT AUTO_INCREMENT NOT NULL
   ,productName VARCHAR(40) NOT NULL
   ,supplierId INT NULL
@@ -139,7 +139,7 @@ CREATE TABLE Product (
 
 
 
-CREATE TABLE Shipper (
+CREATE TABLE Shippers (
   shipperId INT AUTO_INCREMENT NOT NULL
   ,companyName VARCHAR(40) NOT NULL
   ,phone VARCHAR(44) NULL
@@ -149,7 +149,7 @@ CREATE TABLE Shipper (
 
 
 
-CREATE TABLE SalesOrder (
+CREATE TABLE Orders (
   orderId INT AUTO_INCREMENT NOT NULL
   ,custId INT NOT NULL
   ,employeeId INT NULL
@@ -174,7 +174,7 @@ CREATE TABLE SalesOrder (
 
 
 
-CREATE TABLE OrderDetail (
+CREATE TABLE `Order Details` (
    orderDetailId INT AUTO_INCREMENT NOT NULL,
    orderId INT NOT NULL
   ,productId INT NOT NULL

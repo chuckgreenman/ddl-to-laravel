@@ -5,10 +5,8 @@ services:
     image: mysql:8.0
     container_name: ddl-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test_db
-      MYSQL_USER: test_user
-      MYSQL_PASSWORD: test_pass
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: northwind
     ports:
       - "3306:3306"
     volumes:
@@ -17,7 +15,7 @@ services:
     networks:
       - ddl-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pmysql"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -27,9 +25,9 @@ services:
     image: postgres:15
     container_name: ddl-postgres
     environment:
-      POSTGRES_DB: test_db
-      POSTGRES_USER: test_user
-      POSTGRES_PASSWORD: test_pass
+      POSTGRES_DB: northwind
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
     volumes:
@@ -38,7 +36,7 @@ services:
     networks:
       - ddl-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U test_user -d test_db"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d northwind"]
       interval: 10s
       timeout: 5s
       retries: 5

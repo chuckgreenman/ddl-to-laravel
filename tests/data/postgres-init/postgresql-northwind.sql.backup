@@ -5,17 +5,16 @@
 -- Database: testdb;
 -- Disconnect existing Northwind if you have created.
 
-DROP DATABASE IF EXISTS Northwind;
+DROP DATABASE IF EXISTS northwind;
 
 
 
-CREATE DATABASE Northwind
+CREATE DATABASE northwind
   WITH
-    owner = hho
     encoding = 'UTF8'
     tablespace = pg_default
-    lc_collate = 'en_AU.UTF-8'
-    lc_ctype = 'en_AU.UTF-8'
+    lc_collate = 'en_US.UTF-8'
+    lc_ctype = 'en_US.UTF-8'
     connection LIMIT = -1
     template template0;
 
